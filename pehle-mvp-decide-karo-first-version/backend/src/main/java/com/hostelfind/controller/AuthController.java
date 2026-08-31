@@ -1,0 +1,3 @@
+package com.hostelfind.controller;
+import com.hostelfind.dto.*; import com.hostelfind.model.User; import com.hostelfind.service.AuthService; import jakarta.validation.Valid; import org.springframework.http.*; import org.springframework.web.bind.annotation.*;
+@RestController @RequestMapping("/api/auth") @CrossOrigin(origins="*") public class AuthController { private final AuthService service; public AuthController(AuthService s){service=s;} @PostMapping("/register") public ResponseEntity<User> register(@Valid @RequestBody RegisterRequest r){return ResponseEntity.status(HttpStatus.CREATED).body(service.register(r));} @PostMapping("/login") public User login(@Valid @RequestBody LoginRequest r){return service.login(r);} }
